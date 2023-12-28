@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { dishFormReducer } from '../components/DishForm/dishFormSlice.ts';
+import { dishesReducer } from '../components/Dishes/dishesSlice.ts';
 
 export const store = configureStore({
   reducer:{
-    dishForm: dishFormReducer
+    dishForm: dishFormReducer,
+    dishes: dishesReducer
   }
 })
 

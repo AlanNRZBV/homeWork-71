@@ -21,9 +21,13 @@ const DishForm = () => {
 
   const submitHandler = async (e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
-    await dispatch(uploadDish(dish))
-    // dispatch(resetForm())
-    // navigate('/admin')
+    try{
+      await dispatch(uploadDish(dish))
+      dispatch(resetForm())
+      navigate('/admin')
+    }catch (error){
+      console.log('Caught on try - DISH FORM SUBMIT HANDLER - ', error)
+    }
   }
 
   return (
