@@ -5,6 +5,7 @@ import Admin from '../Admin/Admin.tsx';
 import User from '../User/User.tsx';
 import Dishes from '../../components/Dishes/Dishes.tsx';
 import Orders from '../../components/Orders/Orders.tsx';
+import DishForm from '../../components/DishForm/DishForm.tsx';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/dishes" element={<Dishes/>}/>
         <Route path="/admin/orders" element={<Orders/>}/>
+        <Route path="/admin/add-dish" element={<DishForm/>}/>
       </Routes>
       </Container>
     </>
