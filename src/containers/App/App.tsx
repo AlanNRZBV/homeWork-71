@@ -22,6 +22,7 @@ function App() {
         <Route path="/admin/dishes" element={<Dishes/>}/>
         <Route path="/admin/orders" element={<Orders/>}/>
         <Route path="/admin/add-dish" element={<DishForm/>}/>
+        <Route path="/admin/edit-dish/:id" element={<DishForm/>}/>
       </Routes>
       </Container>
     </>
