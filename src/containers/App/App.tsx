@@ -2,7 +2,7 @@ import Navigation from '../../components/Navigation/Navigation.tsx';
 import { Route, Routes } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Admin from '../Admin/Admin.tsx';
-import User from '../User/User.tsx';
+import Client from '../User/Client.tsx';
 import Dishes from '../../components/Dishes/Dishes.tsx';
 import Orders from '../../components/Orders/Orders.tsx';
 import DishForm from '../../components/DishForm/DishForm.tsx';
@@ -17,7 +17,7 @@ function App() {
       </header>
       <Container>
       <Routes>
-        <Route path="/" element={<User/>}/>
+        <Route path="/" element={<Client/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/dishes" element={<Dishes/>}/>
         <Route path="/admin/orders" element={<Orders/>}/>

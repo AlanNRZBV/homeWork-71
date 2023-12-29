@@ -4,9 +4,13 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
 import { deleteDish, fetchDish } from './dishesThunks.ts';
 import { Spinner } from 'react-bootstrap';
 import { isDishDeleting, isDishEditing } from './dishesSlice.ts';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { updateSum } from '../Total/totalSlice.ts';
 
 const DishesItem: FC<IApiDish> = ({ title, price, dishImg, id }) => {
+
+  const location = useLocation()
+  const isClient = location.pathname === '/'
   const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const isDeleting = useAppSelector(isDishDeleting)
@@ -26,8 +30,13 @@ const DishesItem: FC<IApiDish> = ({ title, price, dishImg, id }) => {
     }
   }
 
+  const clientClick = ()=>{
+    const parsedPrice = parseInt(price)
+    dispatch(updateSum(parsedPrice))
+  }
+
   return (
-    <div className="d-flex align-items-center justify-content-between p-3 border border-1 rounded mb-3">
+    <div onClick={clientClick} className="d-flex align-items-center justify-content-between p-3 border border-1 rounded mb-3">
       <div className="d-flex align-items-center">
         <img
           className="me-3"
@@ -42,7 +51,7 @@ const DishesItem: FC<IApiDish> = ({ title, price, dishImg, id }) => {
           <b className="text-primary">Price</b> {price} KGS
         </span>
       </div>
-      <div className="d-flex align-items-center">
+      <div className={isClient ? 'd-none' : 'd-flex align-items-center'}>
         <button
           onClick={onEdit}
           type="button"

@@ -4,8 +4,12 @@ import DishesItem from './DishesItem.tsx';
 import { Spinner } from 'react-bootstrap';
 import { useEffect } from 'react';
 import { fetchDishes } from './dishesThunks.ts';
+import { useLocation } from 'react-router-dom';
+import Total from '../Total/Total.tsx';
 
 const Dishes = () => {
+  const location = useLocation()
+  const isClient = location.pathname === '/'
   const dispatch = useAppDispatch()
   const dishes = useAppSelector(dishesState)
   const isLoading = useAppSelector(isDishesLoading)
@@ -21,6 +25,7 @@ const Dishes = () => {
           <DishesItem key={item.id} title={item.title} price={item.price} id={item.id} dishImg={item.dishImg}/>
         ))
       )}
+      {isClient ? (<Total/>) : (<></>)}
     </div>
   );
 };
