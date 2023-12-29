@@ -2,24 +2,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store.ts';
 
 interface TotalState {
-  sum: number
+  sum: number;
 }
 
 export const initialState: TotalState = {
-  sum: 0
-}
+  sum: 0,
+};
 
 export const totalSlice = createSlice({
-  name:'total',
+  name: 'total',
   initialState,
-  reducers:{
-    updateSum: (state, action:PayloadAction<number>)=>{
-      state.sum += action.payload
-    }
-  }
-})
+  reducers: {
+    updateSum: (state, action: PayloadAction<number>) => {
+      state.sum += action.payload;
+    },
+  },
+});
 
-export const totalReducer = totalSlice.reducer
-export const {updateSum}=totalSlice.actions
+export const totalReducer = totalSlice.reducer;
+export const { updateSum } = totalSlice.actions;
 
-export const totalSum = (state: RootState)=>state.total.sum
+export const totalSum = (state: RootState) => state.total.sum;

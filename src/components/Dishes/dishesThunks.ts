@@ -38,28 +38,29 @@ export const deleteDish = createAsyncThunk<string | undefined, string>(
   },
 );
 
-export const fetchDish = createAsyncThunk<string | undefined, string, { state: RootState }>(
-  'dishes/fetchOne',
-  async (arg, thunkAPI) => {
-    try {
-      const response = await axiosAPI.get(`pizzaHouse/dishes/${arg}.json`);
+export const fetchDish = createAsyncThunk<
+  string | undefined,
+  string,
+  { state: RootState }
+>('dishes/fetchOne', async (arg, thunkAPI) => {
+  try {
+    const response = await axiosAPI.get(`pizzaHouse/dishes/${arg}.json`);
 
-      const newDish: IDish = {
-        title: '',
-        price: '',
-        dishImg: '',
-      };
+    const newDish: IDish = {
+      title: '',
+      price: '',
+      dishImg: '',
+    };
 
-      if (response.data !== null) {
-        newDish.title = response.data.title;
-        newDish.price = response.data.price;
-        newDish.dishImg = response.data.dishImg;
-      }
-      thunkAPI.dispatch(dishFormSlice.actions.addDish(newDish));
-
-      return arg
-    } catch (error) {
-      console.log('Caught on try - FETCH ONE DISH - ', error);
+    if (response.data !== null) {
+      newDish.title = response.data.title;
+      newDish.price = response.data.price;
+      newDish.dishImg = response.data.dishImg;
     }
-  },
-);
+    thunkAPI.dispatch(dishFormSlice.actions.addDish(newDish));
+
+    return arg;
+  } catch (error) {
+    console.log('Caught on try - FETCH ONE DISH - ', error);
+  }
+});

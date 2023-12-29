@@ -1,26 +1,40 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store.ts';
+import { IOrderInModal } from '../../types';
 
-interface CheckoutState {
-  isVisible: boolean
+interface CheckoutModalState {
+  clientOrder: IOrderInModal[];
+  isVisible: boolean;
+  isLoading: boolean;
 }
 
-export const initialState: CheckoutState = {
-  isVisible: false
-}
+export const initialState: CheckoutModalState = {
+  clientOrder: [],
+  isVisible: false,
+  isLoading: false,
+};
 
-export const checkoutSlice = createSlice({
-  name:'checkout',
+export const checkoutModalSlice = createSlice({
+  name: 'checkout',
   initialState,
-  reducers:{
-    toggleVisibility: (state)=>{
-      state.isVisible = !state.isVisible
-    }
-  }
+  reducers: {
+    toggleVisibility: (state) => {
+      state.isVisible = !state.isVisible;
+    },
+    addOrderInfo: (state, action: PayloadAction<IOrderInModal[]>) => {
+      state.clientOrder = action.payload;
+    },
+    deletePosition: (state, action: PayloadAction<IOrderInModal[]>) => {
+      console.log(action.payload);
+      state.clientOrder = action.payload;
+    },
+  },
+});
 
-})
+export const checkoutModalReducer = checkoutModalSlice.reducer;
+export const { toggleVisibility, addOrderInfo, deletePosition } =
+  checkoutModalSlice.actions;
 
-export const checkoutReducer = checkoutSlice.reducer
-export const {toggleVisibility} = checkoutSlice.actions
-
-export const isCheckoutVisible = (state:RootState)=>state.checkout.isVisible
+export const isCheckoutVisible = (state: RootState) =>
+  state.checkoutModal.isVisible;
+export const modalState = (state: RootState) => state.checkoutModal.clientOrder;

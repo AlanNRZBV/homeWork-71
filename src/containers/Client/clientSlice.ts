@@ -18,11 +18,13 @@ export const clientSlice = createSlice({
   reducers: {
     addOrder: (state, action: PayloadAction<IOrder>) => {
       const key = Object.keys(action.payload)[0];
-      const index = state.order.findIndex((order) => Object.keys(order)[0] === key);
+      const index = state.order.findIndex(
+        (order) => Object.keys(order)[0] === key,
+      );
       if (index !== -1) {
-        const order = state.order[index]
-        order[key]+=1
-      }else{
+        const order = state.order[index];
+        order[key] += 1;
+      } else {
         state.order.push(action.payload);
       }
     },
@@ -31,7 +33,7 @@ export const clientSlice = createSlice({
 
 export const clientReducer = clientSlice.reducer;
 export const { addOrder } = clientSlice.actions;
-export const orderState = (state: RootState)=>state.client.order
+export const orderState = (state: RootState) => state.client.order;
 
 /*
 в order массив с ключ: количество

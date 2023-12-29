@@ -20,15 +20,15 @@ export const uploadDish = createAsyncThunk<void, IDish>(
   },
 );
 
-export const editDish = createAsyncThunk<void, string, {state: RootState}>(
-  'dishForm/edit', async (arg, thunkAPI)=>{
+export const editDish = createAsyncThunk<void, string, { state: RootState }>(
+  'dishForm/edit',
+  async (arg, thunkAPI) => {
     try {
       const getState = thunkAPI.getState();
-      const dish = getState.dishForm.dish
-      await axiosAPI.put(`pizzaHouse/dishes/${arg}.json`, dish)
-    }catch (error)
-    {
-      console.log('Caught on try - EDIT DISH - ', error)
+      const dish = getState.dishForm.dish;
+      await axiosAPI.put(`pizzaHouse/dishes/${arg}.json`, dish);
+    } catch (error) {
+      console.log('Caught on try - EDIT DISH - ', error);
     }
-  }
-)
+  },
+);

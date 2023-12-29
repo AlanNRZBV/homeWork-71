@@ -50,7 +50,6 @@ export const dishesSlice = createSlice({
       state.isEditing = true;
     });
     builder.addCase(fetchDish.fulfilled, (state) => {
-
       state.isEditing = false;
     });
     builder.addCase(fetchDish.rejected, (state) => {
