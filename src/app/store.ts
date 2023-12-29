@@ -5,7 +5,7 @@ import { dishesReducer } from '../components/Dishes/dishesSlice.ts';
 export const store = configureStore({
   reducer:{
     dishForm: dishFormReducer,
-    dishes: dishesReducer
+    dishes: dishesReducer,
   }
 })
 
